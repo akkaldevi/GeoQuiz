@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="action_settings">Settings</string>
+    <string name="previous_button">Prev</string>
+    <string name="next_button">Next</string>
+    <string name="next_button2">Next2</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="correct_toast">Correct !</string>
+    <string name="incorrect_toast">Incorrect !</string>
+
+    <string name="question_ca"><b>Capital of CA is Sacramento !</b></string>
+    <string name="question_ga"><b>Capital of GA is NewYork !</b></string>
+    <string name="question_wa"><b>Capital of WA is Redmond !</b></string>
+    <string name="question_tx"><b>Capital of TX is Dallas !</b></string>
+    <string name="question_az"><b>Capital of AZ is Phoenix !</b></string>
+    <string name="question_ut"><b>Capital of UT is Phoenix !</b></string>
+
+    
+    <string name="warning_text">Are you sure you want to do this? </string>
+    <string name="show_answer_button">Show Answer</string>
+    <string name="cheat_button">Cheat!</string>
+    <string name="judgement_toast">Cheating is wrong. </string>
+</resources>

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,6 +31,9 @@ public class CheatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cheat);
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
+        String apiLevelAndRelease = "API Level: " + Build.VERSION.SDK_INT + " & Release: " + Build.VERSION.RELEASE;
+        ((TextView) findViewById(R.id.android_version_text_view)).setText(apiLevelAndRelease);
+
         Button showAnswerButton = (Button) findViewById(R.id.show_answer_button);
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
 
@@ -41,20 +45,30 @@ public class CheatActivity extends AppCompatActivity {
                 data.putExtra(EXTRA_ANSWER_IS_SHOWN, true);
                 setResult(RESULT_OK, data);
 
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 
-                int cx = view.getWidth() / 2;
-                int cy = view.getHeight() / 2;
-                float radius = view.getWidth();
-                Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, radius, 0);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        mAnswerTextView.setVisibility(View.VISIBLE);
-                        view.setVisibility(View.INVISIBLE);
-                    }
-                });
-                anim.start();
+                    Log.i(TAG, Build.VERSION.SDK_INT + ", " + Build.VERSION.RELEASE + "@@@@@@@@@@@@@@@@@@");
+
+                    int cx = view.getWidth() / 2;
+                    int cy = view.getHeight() / 2;
+                    float radius = view.getWidth();
+                    Animator anim = null;
+
+                    anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, radius, 0);
+
+                    anim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            mAnswerTextView.setVisibility(View.VISIBLE);
+                            view.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                    anim.start();
+                } else {
+                    mAnswerTextView.setVisibility(View.VISIBLE);
+                    view.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
